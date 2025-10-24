@@ -467,6 +467,7 @@ class NetflixHomePage extends StatelessWidget {
   Widget _buildFooter() {
     return Container(
       padding: const EdgeInsets.all(30),
+      color: Colors.black,
       child: Column(
         children: [
           const Text(
@@ -535,7 +536,97 @@ class NetflixHomePage extends StatelessWidget {
               fontSize: 14,
             ),
           ),
+          const SizedBox(height: 30),
+          
+          // Links del footer
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildFooterLink('Preguntas frecuentes'),
+                    _buildFooterLink('Cuenta'),
+                    _buildFooterLink('Relaciones con inversionistas'),
+                    _buildFooterLink('Canjear tarjetas de regalo'),
+                    _buildFooterLink('Formas de ver'),
+                    _buildFooterLink('Privacidad'),
+                    _buildFooterLink('Información corporativa'),
+                    _buildFooterLink('Prueba de velocidad'),
+                    _buildFooterLink('Solo en Netflix'),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildFooterLink('Centro de ayuda'),
+                    _buildFooterLink('Prensa'),
+                    _buildFooterLink('Empleo'),
+                    _buildFooterLink('Comprar tarjetas de regalo'),
+                    _buildFooterLink('Términos de uso'),
+                    _buildFooterLink('Preferencias de cookies'),
+                    _buildFooterLink('Contáctanos'),
+                    _buildFooterLink('Avisos legales'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 30),
+          
+          // Selector de idioma
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey[700]!, width: 1),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Icon(Icons.language, color: Colors.white, size: 18),
+                  SizedBox(width: 8),
+                  Text(
+                    'Español',
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                  ),
+                  SizedBox(width: 8),
+                  Icon(Icons.arrow_drop_down, color: Colors.white, size: 20),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Netflix Perú',
+              style: TextStyle(
+                color: Colors.grey[600],
+                fontSize: 13,
+              ),
+            ),
+          ),
         ],
+      ),
+    );
+  }
+  
+  Widget _buildFooterLink(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Text(
+        text,
+        style: TextStyle(
+          color: Colors.grey[500],
+          fontSize: 13,
+          decoration: TextDecoration.underline,
+        ),
       ),
     );
   }
@@ -558,19 +649,19 @@ class MovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 160,
+      width: 150,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
           // Imagen de la película/serie
           Positioned(
-            left: 40,
+            left: 35,
             top: 0,
             child: Container(
-              height: 200,
-              width: 120,
+              height: 180,
+              width: 115,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(6),
                 image: DecorationImage(
                   image: NetworkImage(imageUrl),
                   fit: BoxFit.cover,
@@ -578,46 +669,46 @@ class MovieCard extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.5),
-                    blurRadius: 10,
-                    spreadRadius: 2,
+                    blurRadius: 8,
+                    spreadRadius: 1,
                   ),
                 ],
               ),
             ),
           ),
           
-          // Número de ranking (sobrepuesto)
+          // Número de ranking (sobrepuesto en la parte inferior)
           Positioned(
             left: 0,
-            top: 0,
+            bottom: 0,
             child: Stack(
               children: [
                 // Sombra del número
                 Text(
                   rank,
                   style: TextStyle(
-                    fontSize: 140,
+                    fontSize: 110,
                     fontWeight: FontWeight.w900,
                     foreground: Paint()
                       ..style = PaintingStyle.stroke
-                      ..strokeWidth = 8
+                      ..strokeWidth = 6
                       ..color = Colors.black,
-                    height: 1.2,
+                    height: 1.0,
                   ),
                 ),
                 // Número principal
                 Text(
                   rank,
                   style: TextStyle(
-                    fontSize: 140,
+                    fontSize: 110,
                     fontWeight: FontWeight.w900,
                     color: Colors.white,
-                    height: 1.2,
+                    height: 1.0,
                     shadows: [
                       Shadow(
                         color: Colors.black.withOpacity(0.8),
-                        offset: const Offset(4, 4),
-                        blurRadius: 8,
+                        offset: const Offset(3, 3),
+                        blurRadius: 6,
                       ),
                     ],
                   ),
